@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gold Weight Calculator - Krishna Jewellery</title>
   <style>
     body {
@@ -12,8 +12,9 @@
       font-family: 'Georgia', serif;
       text-align: center;
       color: white;
-      padding: 50px;
+      padding: 40px 20px;
     }
+
     h1 {
       font-family: 'Cursive', sans-serif;
       font-size: 3em;
@@ -21,110 +22,109 @@
       text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
       margin-bottom: 5px;
     }
+
     h2 {
       font-family: 'Cursive', sans-serif;
       font-size: 2em;
       color: #FF4500;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      margin-top: 5px;
       margin-bottom: 30px;
     }
+
+    label {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #fff;
+      display: block;
+      text-align: left;
+      max-width: 400px;
+      margin: 15px auto 5px auto;
+    }
+
     input {
       padding: 12px;
-      margin: 10px;
+      margin: 5px auto 15px auto;
       font-size: 1.2em;
-      border-radius: 5px;
-      border: 2px solid #FFD700;
-      background-color: rgba(255, 255, 255, 0.9);
-      width: 80%;
+      width: 90%;
       max-width: 400px;
+      border: 2px solid #FFD700;
+      border-radius: 6px;
+      display: block;
     }
-    input:focus {
-      outline: none;
-      border-color: #FF5733;
-    }
+
     button {
-      padding: 12px 25px;
-      font-size: 1.2em;
-      font-weight: bold;
-      border-radius: 5px;
-      border: none;
-      background-color: #FF4500;
+      background-color: #ff4500;
       color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background-color: #C70039;
-    }
-    #result {
-      font-size: 1.6em;
-      color: #FFD700;
-      font-weight: bold;
-      margin-top: 30px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-    }
-    .summary {
-      margin-top: 20px;
       font-size: 1.2em;
-      color: #ffffff;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e03e00;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #00FFB3;
+      text-shadow: 1px 1px 3px black;
     }
   </style>
-  <script>
-    function calculateGoldWeight() {
-
-      let totalPaid = parseFloat(document.getElementById("totalPaid").value);
-      let pricePer10gm = parseFloat(document.getElementById("pricePer10gm").value);
-      let gstPercentage = parseFloat(document.getElementById("gstPercentage").value);
-      let makingChargePerGram = parseFloat(document.getElementById("makingChargePerGram").value);
-
-      if (isNaN(totalPaid) || isNaN(pricePer10gm) || isNaN(gstPercentage) || isNaN(makingChargePerGram)) {
-        document.getElementById("result").innerText = "⚠️ Please enter valid numbers in all fields.";
-        return;
-      }
-
-      let pricePerGram = pricePer10gm / 10;
-
-      // Step 1: Remove GST from total paid
-      let priceExcludingGST = totalPaid / (1 + gstPercentage / 100);
-
-      // Step 2: Final per gram rate (includes gold + making)
-      let finalRatePerGram = pricePerGram + makingChargePerGram;
-
-      // Step 3: Calculate weight
-      let goldWeight = priceExcludingGST / finalRatePerGram;
-
-      document.getElementById("result").innerHTML = `✅ Weight of Gold: <strong>${goldWeight.toFixed(3)} grams</strong>`;
-
-      document.getElementById("summary").innerHTML = `
-        <p>Total Paid (incl. GST): ₹${totalPaid}</p>
-        <p>Gold Price (per 10g): ₹${pricePer10gm}</p>
-        <p>GST: ${gstPercentage}%</p>
-        <p>Making Charge per gram: ₹${makingChargePerGram}</p>
-      `;
-    }
-  </script>
 </head>
 <body>
+
   <h1>Krishna Jewellery Work Shop</h1>
   <h2>Gold Weight Calculator</h2>
 
-  <label for="totalPaid">Total Price Paid (including GST):</label><br/>
-  <input type="number" id="totalPaid" placeholder="e.g. 60200" /><br/>
+  <label for="totalPaid">Total Price Paid (including GST)</label>
+  <input type="number" id="totalPaid" placeholder="e.g. 73000">
 
-  <label for="pricePer10gm">Gold Price per 10 grams:</label><br/>
-  <input type="number" id="pricePer10gm" placeholder="e.g. 73000" /><br/>
+  <label for="goldPricePer10g">Gold Price per 10 grams</label>
+  <input type="number" id="goldPricePer10g" placeholder="e.g. 60200">
 
-  <label for="gstPercentage">GST Percentage:</label><br/>
-  <input type="number" id="gstPercentage" placeholder="e.g. 3" /><br/>
+  <label for="gst">GST Percentage</label>
+  <input type="number" id="gst" placeholder="e.g. 3">
 
-  <label for="makingChargePerGram">Making Charge per gram:</label><br/>
-  <input type="number" id="makingChargePerGram" placeholder="e.g. 800" /><br/>
+  <label for="makingCharge">Making Charge per gram</label>
+  <input type="number" id="makingCharge" placeholder="e.g. 800">
 
-  <button onclick="calculateGoldWeight()">Calculate Weight</button>
-
+  <button onclick="calculateWeight()">Calculate Weight</button>
 
   <div id="result"></div>
-  <div class="summary" id="summary"></div>
+
+  <script>
+    function calculateWeight() {
+      const totalPaid = parseFloat(document.getElementById('totalPaid').value);
+      const goldPricePer10g = parseFloat(document.getElementById('goldPricePer10g').value);
+      const gst = parseFloat(document.getElementById('gst').value);
+      const makingCharge = parseFloat(document.getElementById('makingCharge').value);
+
+      if (isNaN(totalPaid) || isNaN(goldPricePer10g) || isNaN(gst) || isNaN(makingCharge)) {
+        document.getElementById('result').innerHTML = 'Please fill all the fields correctly.';
+        return;
+      }
+
+      const gstAmount = (totalPaid * gst) / (100 + gst);
+      const amountWithoutGST = totalPaid - gstAmount;
+
+      // Let weight be x grams
+      // amountWithoutGST = (x * goldPricePerGram) + (x * makingCharge)
+      // => x = amountWithoutGST / (pricePerGram + makingCharge)
+
+      const goldPricePerGram = goldPricePer10g / 10;
+      const totalPerGram = goldPricePerGram + makingCharge;
+
+      const weight = amountWithoutGST / totalPerGram;
+
+      document.getElementById('result').innerHTML = 
+        `✅ Calculated Gold Weight: <span style="color: #FFD700">${weight.toFixed(2)} grams</span>`;
+    }
+  </script>
+
 </body>
 </html>
