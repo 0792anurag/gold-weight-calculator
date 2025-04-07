@@ -71,7 +71,8 @@
     }
   </style>
   <script>
-    function calculateWeight() {
+    function calculateGoldWeight() {
+
       let totalPaid = parseFloat(document.getElementById("totalPaid").value);
       let pricePer10gm = parseFloat(document.getElementById("pricePer10gm").value);
       let gstPercentage = parseFloat(document.getElementById("gstPercentage").value);
@@ -120,7 +121,8 @@
   <label for="makingChargePerGram">Making Charge per gram:</label><br/>
   <input type="number" id="makingChargePerGram" placeholder="e.g. 800" /><br/>
 
-  <button onclick="calculateWeight()">Calculate Weight</button>
+  <button onclick="calculateGoldWeight()">Calculate Weight</button>
+
 
   <div id="result"></div>
   <div class="summary" id="summary"></div>
